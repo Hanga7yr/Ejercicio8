@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 25 nov. 2020 23:16:29 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="orm_gestion_proyectos" dynamic-insert="false" dynamic-update="false" mutable="true" name="ORM.Empleado" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="empleado">
+        <id name="dni" type="string">
+            <column length="9" name="dni"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="nomEmp" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="nom_emp" not-null="true"/>
+        </property>
+        <one-to-one class="ORM.EmpPlantilla" constrained="false" embed-xml="true" name="empPlantilla"/>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="asigProyectos" optimistic-lock="true" sort="unsorted" table="asig_proyecto">
+            <key on-delete="noaction">
+                <column length="9" name="dni_emp" not-null="true"/>
+            </key>
+            <one-to-many class="ORM.AsigProyecto" embed-xml="true" not-found="exception"/>
+        </set>
+        <one-to-one class="ORM.DatosProf" constrained="false" embed-xml="true" name="datosProf"/>
+    </class>
+</hibernate-mapping>

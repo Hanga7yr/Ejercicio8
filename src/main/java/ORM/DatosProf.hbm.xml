@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 25 nov. 2020 23:16:29 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="orm_gestion_proyectos" dynamic-insert="false" dynamic-update="false" mutable="true" name="ORM.DatosProf" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="datos_prof">
+        <id name="dni" type="string">
+            <column length="9" name="dni"/>
+            <generator class="foreign">
+                <param name="property">empleado</param>
+            </generator>
+        </id>
+        <one-to-one class="ORM.Empleado" constrained="true" embed-xml="true" name="empleado"/>
+        <property generated="never" lazy="false" name="categoria" optimistic-lock="true" type="string" unique="false">
+            <column length="2" name="categoria" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="sueldoBrutoAnual" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="sueldo_bruto_anual" precision="8"/>
+        </property>
+    </class>
+</hibernate-mapping>
